@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Supabase design language (DESIGN.md)
+   White canvas · near-black ink #171717 · single emerald accent
+   #3ecf8e · grey hairline ladder · square-ish 6px radii.
+   Clinical severity colours are the one deliberate extension:
+   in medical software, colour must encode risk.
+   ============================================================ */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+
+    --primary: 152 61% 53%;
+    --primary-foreground: 0 0% 9%;
+    --primary-deep: 158 66% 42%;
+
+    --secondary: 0 0% 98%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 98%;
+    --muted-foreground: 0 0% 44%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 9%;
+
+    --surface: 0 0% 98%;
+    --surface-night: 0 0% 11%;
+
+    --border: 0 0% 93%;
+    --border-strong: 0 0% 87%;
+    --input: 0 0% 87%;
+    --ring: 152 61% 53%;
+
+    --critical: 4 90% 43%;
+    --critical-foreground: 0 0% 100%;
+    --critical-bg: 4 100% 97%;
+    --critical-border: 4 80% 89%;
+
+    --warning: 32 90% 40%;
+    --warning-foreground: 0 0% 100%;
+    --warning-bg: 38 100% 96%;
+    --warning-border: 38 80% 86%;
+
+    --success: 158 66% 30%;
+    --success-foreground: 0 0% 100%;
+    --success-bg: 152 60% 96%;
+    --success-border: 152 45% 85%;
+
+    --info: 217 85% 45%;
+    --info-foreground: 0 0% 100%;
+    --info-bg: 214 100% 97%;
+    --info-border: 214 80% 89%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .num {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

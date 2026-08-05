@@ -1,0 +1,21 @@
+node_modules/
+dist/
+build/
+.DS_Store
+*.local
+.env
+.env.*
+!.env.example
+
+# Local scratch / comparison material, not part of the deliverable
+_reference/
+_dscompare/
+
+logs/
+*.log
+npm-debug.log*
+.vite/
+.cache/
+.idea/
+.vscode/*
+!.vscode/extensions.json
