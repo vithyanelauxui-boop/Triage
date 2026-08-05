@@ -141,9 +141,9 @@ export function QuickActionsCard() {
                 key={a.label}
                 value={a.label}
                 onSelect={() => {}}
-                className="gap-3 rounded-lg bg-secondary px-3 py-3 text-sm text-foreground data-[selected=true]:bg-border/70"
+                className="gap-3 rounded-lg border border-muted bg-secondary px-3 py-3 text-sm text-foreground data-[selected=true]:bg-border/70"
               >
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-card">
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted">
                   <a.icon className="size-4 text-muted-foreground" strokeWidth={1.75} />
                 </span>
                 <span className="truncate">{a.label}</span>
