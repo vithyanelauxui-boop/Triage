@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { usePatientSheet } from './PatientSheet';
 import { nextPatient, schedule, type ScheduleItem, type ScheduleStatus } from '@/data/dashboard';
 
@@ -71,9 +72,21 @@ function Row({ item }: { item: ScheduleItem }) {
               <span className={cn('truncate text-sm', isDone ? 'text-muted-foreground' : 'font-medium')}>
                 {item.patientName}
               </span>
-              {/* Risk flag travels with the patient into every view */}
-              {item.flag === 'critical' && <ShieldAlert className="size-3.5 shrink-0 text-critical" />}
-              {item.flag === 'urgent' && <TriangleAlert className="size-3.5 shrink-0 text-warning" />}
+              {/* Risk flag travels with the patient — hover the icon for its severity */}
+              {item.flag && (
+                <Tooltip>
+                  <TooltipTrigger asChild onClick={(e) => e.stopPropagation()}>
+                    <span className="inline-flex cursor-default">
+                      {item.flag === 'critical' ? (
+                        <ShieldAlert className="size-3.5 shrink-0 text-critical" />
+                      ) : (
+                        <TriangleAlert className="size-3.5 shrink-0 text-warning" />
+                      )}
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent>{item.flag === 'critical' ? 'Critical' : 'Urgent'}</TooltipContent>
+                </Tooltip>
+              )}
               {item.isUpNext && (
                 <Badge variant="emerald" className="ml-0.5">
                   Up next
