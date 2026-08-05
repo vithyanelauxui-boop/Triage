@@ -238,9 +238,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             {!collapsed && <span className="text-md font-semibold tracking-tight">Triage</span>}
           </div>
 
-          {/* Full-height rule — flush to both the top and bottom edge of the bar,
-              not a short floating tick — so it reads as a structural divider. */}
-          <div className="hidden w-px self-stretch bg-white/15 md:block" />
+          {/* Sized to match the search field's height, with rounded ends — a
+              short pill-shaped rule rather than a full-height square-edged one. */}
+          <div className="hidden h-8 w-[3px] shrink-0 self-center rounded-full bg-white/15 md:block" />
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
@@ -295,10 +295,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           className={cn(
             // White chrome, distinct from the gray app canvas the main column sits on —
             // matches the reference: sidebar and topbar are chrome, not canvas.
-            // border-strong (not the default faint hairline) so this edge reads at the
-            // same visual weight as the topbar separator directly above it — one
-            // continuous vertical line, not a bold stroke dropping into a faint one.
-            'hidden shrink-0 flex-col border-r border-border-strong bg-card transition-[width] duration-200 md:flex',
+            // border-border resolves to #EBEBEB, per the reference.
+            'hidden shrink-0 flex-col border-r border-border bg-card transition-[width] duration-200 md:flex',
             collapsed ? 'w-[52px]' : 'w-[216px]',
           )}
         >

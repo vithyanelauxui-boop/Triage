@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { usePatientSheet } from './PatientSheet';
 import type { AttentionItem, Severity } from '@/data/dashboard';
 
@@ -102,16 +103,13 @@ export function AttentionPanel({
           <span className="num text-xs text-muted-foreground">{total} open</span>
         </div>
 
-        <div className="flex items-center gap-0.5 rounded-md border border-border bg-secondary/60 p-0.5">
+        <ToggleGroup
+          type="single"
+          value={filter}
+          onValueChange={(v) => v && setFilter(v as typeof filter)}
+        >
           {filters.map((f) => (
-            <button
-              key={f.id}
-              onClick={() => setFilter(f.id)}
-              className={cn(
-                'flex items-center gap-1.5 rounded-sm px-2 py-1 text-xs transition-colors',
-                filter === f.id ? 'bg-card font-medium text-foreground shadow-xs' : 'text-muted-foreground hover:text-foreground',
-              )}
-            >
+            <ToggleGroupItem key={f.id} value={f.id} className="gap-1.5 px-2">
               {f.label}
               <span
                 className={cn(
@@ -123,9 +121,9 @@ export function AttentionPanel({
               >
                 {f.count}
               </span>
-            </button>
+            </ToggleGroupItem>
           ))}
-        </div>
+        </ToggleGroup>
       </div>
 
       <ul className="divide-y divide-border">
