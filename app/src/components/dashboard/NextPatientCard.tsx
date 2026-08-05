@@ -2,7 +2,7 @@ import { ArrowRight, Clock, FileText, ShieldCheck } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { Card } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { nextPatient } from '@/data/dashboard';
 
 function Stat({ label, value, tone }: { label: string; value: string; tone?: 'warning' }) {
@@ -21,13 +21,13 @@ export function NextPatientCard() {
 
   return (
     <Card className="overflow-hidden">
-      <div className="flex items-center justify-between border-b border-border px-4 py-2">
-        <h2 className="text-xs font-medium text-muted-foreground">Up next</h2>
+      <CardHeader className="border-b border-border">
+        <CardTitle className="text-sm">Up next</CardTitle>
         <span className="inline-flex items-center gap-1.5 text-xs font-medium text-warning">
           <Clock className="size-3.5" />
           Waiting {p.waitingMins} min
         </span>
-      </div>
+      </CardHeader>
 
       <div className="p-4">
         <div className="flex flex-wrap items-start justify-between gap-4">

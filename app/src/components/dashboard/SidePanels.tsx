@@ -82,10 +82,11 @@ export function RecentActivityCard() {
 
       {/* Audit trail: confirms what was signed, and lets a mistake be caught fast */}
       <ol className="relative px-4 py-3">
-        <span className="absolute bottom-4 left-[21px] top-4 w-px bg-border" aria-hidden="true" />
+        {/* Connector runs through the exact centre of the 6px dots (16px pad + 3px half) */}
+        <span className="absolute bottom-4 left-[18.5px] top-4 w-px bg-border" aria-hidden="true" />
         {recentActivity.map((a) => (
           <li key={a.id} className="group relative flex gap-3 py-1.5">
-            <span className="relative z-10 mt-1.5 size-1.5 shrink-0 rounded-full bg-border-strong ring-4 ring-card" />
+            <span className="relative z-10 mt-1.5 flex size-1.5 shrink-0 items-center justify-center rounded-full bg-border-strong ring-4 ring-card" />
             <div className="min-w-0 flex-1">
               <p className="text-xs leading-snug">
                 {a.action} — <span className="font-medium">{a.patientName}</span>
