@@ -135,15 +135,17 @@ export function QuickActionsCard() {
             way they do in Vercel's own command menu. */}
         <CommandInput aria-label="Quick actions" className="sr-only h-0 border-0 p-0" tabIndex={0} />
         <CommandList className="max-h-none">
-          <CommandGroup className="grid grid-cols-2 gap-px bg-border p-0 [&_[cmdk-group-items]]:contents">
+          <CommandGroup className="grid grid-cols-2 gap-2 p-3 [&_[cmdk-group-items]]:contents">
             {quickActions.map((a) => (
               <CommandItem
                 key={a.label}
                 value={a.label}
                 onSelect={() => {}}
-                className="rounded-none bg-card py-2.5 data-[selected=true]:bg-secondary"
+                className="gap-3 rounded-lg bg-secondary px-3 py-3 text-sm text-foreground data-[selected=true]:bg-border/70"
               >
-                <a.icon strokeWidth={1.75} />
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-card">
+                  <a.icon className="size-4 text-muted-foreground" strokeWidth={1.75} />
+                </span>
                 <span className="truncate">{a.label}</span>
               </CommandItem>
             ))}
