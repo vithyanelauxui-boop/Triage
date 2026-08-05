@@ -100,7 +100,7 @@ export function AttentionPanel({
         <div className="flex items-center gap-2">
           <ShieldAlert className={cn('size-4', counts.critical > 0 ? 'text-critical' : 'text-muted-foreground')} />
           <h2 className="text-md font-medium">Needs your attention</h2>
-          <span className="num text-xs text-muted-foreground">{total} open</span>
+          <span className="num text-xs text-muted-foreground">({total} open)</span>
         </div>
 
         <ToggleGroup
