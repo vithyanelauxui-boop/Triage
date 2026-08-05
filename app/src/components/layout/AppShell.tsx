@@ -222,15 +222,26 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       {/* Full-width top bar — brand, section context, global search, notifications.
           A polarity-flipped dark band (design.md's dark-surface pattern) that spans
           above both the sidebar and the content, rather than living inside either. */}
-      <header className="flex h-12 shrink-0 items-center gap-4 bg-surface-night px-4 text-white">
-        <div className="flex items-center gap-2">
-          <BrandMark className="text-white" />
-          <span className="text-md font-semibold tracking-tight">Triage</span>
-        </div>
+      <header className="flex h-12 shrink-0 items-center gap-4 bg-surface-night pr-4 text-white">
+        {/* Brand column and separator are grouped with zero gap between them —
+            the header's gap-4 applies *around* this pair, not inside it — so
+            the separator sits flush on the sidebar's right border (md+), not
+            offset by the flex gap. */}
+        <div className="flex shrink-0 self-stretch">
+          <div
+            className={cn(
+              'flex shrink-0 items-center gap-2 pl-4',
+              collapsed ? 'md:w-[52px] md:justify-center md:pl-0' : 'md:w-[216px]',
+            )}
+          >
+            <BrandMark className="text-white" />
+            {!collapsed && <span className="text-md font-semibold tracking-tight">Triage</span>}
+          </div>
 
-        {/* Full-height rule — flush to both the top and bottom edge of the bar,
-            not a short floating tick — so it reads as a structural divider. */}
-        <div className="hidden w-px self-stretch bg-white/15 md:block" />
+          {/* Full-height rule — flush to both the top and bottom edge of the bar,
+              not a short floating tick — so it reads as a structural divider. */}
+          <div className="hidden w-px self-stretch bg-white/15 md:block" />
+        </div>
 
         <div className="hidden items-center gap-2 md:flex">
           <Button
@@ -282,7 +293,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         {/* Sidebar */}
         <aside
           className={cn(
-            'hidden shrink-0 flex-col border-r border-border bg-background transition-[width] duration-200 md:flex',
+            // White chrome, distinct from the gray app canvas the main column sits on —
+            // matches the reference: sidebar and topbar are chrome, not canvas.
+            // border-strong (not the default faint hairline) so this edge reads at the
+            // same visual weight as the topbar separator directly above it — one
+            // continuous vertical line, not a bold stroke dropping into a faint one.
+            'hidden shrink-0 flex-col border-r border-border-strong bg-card transition-[width] duration-200 md:flex',
             collapsed ? 'w-[52px]' : 'w-[216px]',
           )}
         >

@@ -19,7 +19,7 @@
    ============================================================ */
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 0 0% 95%;           /* app canvas #F2F2F2 — cards stay white, sitting above it */
     --foreground: 0 0% 9%;            /* ink #171717 */
 
     --card: 0 0% 100%;

@@ -17,7 +17,7 @@ export const SheetContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        'fixed inset-y-0 z-50 flex w-[260px] flex-col border-border bg-background shadow-lg',
+        'fixed inset-y-0 z-50 flex w-[260px] flex-col border-border bg-card shadow-lg',
         side === 'left' ? 'left-0 border-r' : 'right-0 border-l',
         className,
       )}

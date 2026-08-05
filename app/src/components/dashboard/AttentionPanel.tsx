@@ -55,7 +55,7 @@ function AttentionRow({ item }: { item: AttentionItem }) {
           {item.value && (
             <span
               className={cn(
-                'num shrink-0 rounded-xs px-1 text-xs font-semibold',
+                'num shrink-0 rounded-full px-2 text-xs font-semibold',
                 isCritical ? 'bg-critical-bg text-critical' : 'bg-warning-bg text-warning',
               )}
             >
