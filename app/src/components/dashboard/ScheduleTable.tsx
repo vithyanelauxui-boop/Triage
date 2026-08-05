@@ -121,7 +121,7 @@ export function ScheduleTable() {
 
   return (
     <section className="overflow-hidden rounded-lg border border-border bg-card">
-      <div className="flex flex-wrap items-center justify-between gap-3 px-4 pt-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-4 pb-3 pt-3">
         <h2 className="text-md font-medium">Today's schedule</h2>
         <Button variant="ghost" size="sm">
           <CalendarDays />
@@ -130,12 +130,14 @@ export function ScheduleTable() {
       </div>
 
       <Tabs value={tab} onValueChange={setTab}>
-        <div className="px-4 pt-1">
+        <div className="px-4">
           <TabsList className="w-full justify-start">
             {TABS.map((t) => (
               <TabsTrigger key={t.id} value={t.id}>
                 {t.label}
-                <span className="num ml-1.5 text-muted-foreground">{count(t.id)}</span>
+                <span className="num ml-1.5 rounded-full bg-primary/10 px-1.5 py-0.5 text-2xs font-semibold text-primary">
+                  {count(t.id)}
+                </span>
               </TabsTrigger>
             ))}
           </TabsList>
@@ -145,7 +147,10 @@ export function ScheduleTable() {
       {rows.length > 0 ? (
         <Table>
           <TableHeader>
-            <TableRow className="hover:bg-transparent">
+            {/* border-strong so the header row reads as clearly separate from the
+                data rows below, instead of blending into the first row's own
+                faint divider. */}
+            <TableRow className="border-border-strong hover:bg-transparent">
               <TableHead>Time</TableHead>
               <TableHead>Patient</TableHead>
               <TableHead>Reason</TableHead>
