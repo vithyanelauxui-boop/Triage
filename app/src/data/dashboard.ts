@@ -58,9 +58,9 @@ export interface ActivityItem {
 }
 
 export const doctor = {
-  name: 'Dr. Anand Kumar',
-  shortName: 'Dr. Kumar',
-  initials: 'AK',
+  name: 'Dr. Anand Vijayan',
+  shortName: 'Dr. Vijayan',
+  initials: 'AV',
   specialty: 'Cardiology',
   room: 'Room 4B',
   status: 'Available' as const,
