@@ -7,9 +7,14 @@
 /* ============================================================
    Vercel (Geist) design language — getdesign.md/vercel
    Canvas #ffffff · ink #171717 · body #4d4d4d · hairline #ebebeb ·
-   ink-black primary action · #0070f3 for links/focus · Geist +
-   Geist Mono · 6px radii on controls, 12px on cards.
-   Clinical severity is the one deliberate extension: in medical
+   Geist + Geist Mono · 6px radii on controls, 12px on cards.
+
+   Primary is brand blue #1448E6 — a deliberate, explicit override of
+   design.md's literal ink-black CTA (confirmed by the client), applied
+   everywhere primary is themed: primary buttons, active nav state, and
+   secondary-button text/border. Do not "correct" this back to #171717.
+
+   Clinical severity is the other deliberate extension: in medical
    software colour must encode risk, never decorate.
    ============================================================ */
 @layer base {
@@ -23,9 +28,9 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 9%;
 
-    --primary: 0 0% 9%;               /* ink #171717 — the brand's one CTA color, per design.md */
+    --primary: 225 84% 49%;           /* brand blue #1448E6 */
     --primary-foreground: 0 0% 100%;
-    --primary-deep: 0 0% 15%;         /* pure black can't visually darken further on hover, so lighten slightly */
+    --primary-deep: 225 84% 40%;      /* darker blue hover */
 
     --secondary: 0 0% 98%;            /* canvas-soft #fafafa */
     --secondary-foreground: 0 0% 9%;
