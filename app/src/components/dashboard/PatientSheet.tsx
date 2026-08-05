@@ -10,8 +10,8 @@ import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
 // opens the same detail panel instead of scattering inline buttons everywhere.
 export interface PatientView {
   name: string;
-  id: string;
-  age: number;
+  id?: string;
+  age?: number;
   initials: string;
   subtitle: string;
   severity?: 'critical' | 'urgent';
@@ -59,9 +59,11 @@ export function PatientSheetProvider({ children }: { children: ReactNode }) {
                   </Avatar>
                   <div className="min-w-0 flex-1">
                     <SheetTitle className="text-lg font-medium tracking-tight">{patient.name}</SheetTitle>
-                    <p className="num text-sm text-muted-foreground">
-                      {patient.age} yrs · {patient.id}
-                    </p>
+                    {(patient.age || patient.id) && (
+                      <p className="num text-sm text-muted-foreground">
+                        {[patient.age ? `${patient.age} yrs` : null, patient.id].filter(Boolean).join(' · ')}
+                      </p>
+                    )}
                   </div>
                   {sev && (
                     <Badge variant={sev.badge}>

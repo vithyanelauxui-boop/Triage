@@ -117,7 +117,7 @@ export function ScheduleTable() {
       </div>
 
       <Tabs value={tab} onValueChange={setTab}>
-        <div className="px-4">
+        <div className="px-4 pt-1">
           <TabsList className="w-full justify-start">
             {TABS.map((t) => (
               <TabsTrigger key={t.id} value={t.id}>
