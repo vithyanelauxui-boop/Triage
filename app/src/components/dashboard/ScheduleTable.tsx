@@ -138,7 +138,7 @@ export function ScheduleTable() {
                 <span
                   className={cn(
                     'num ml-1.5 rounded-full px-1.5 py-0.5 text-2xs font-semibold',
-                    tab === t.id ? 'bg-primary text-primary-foreground' : 'bg-secondary text-muted-foreground',
+                    tab === t.id ? 'bg-primary/10 text-primary' : 'bg-secondary text-muted-foreground',
                   )}
                 >
                   {count(t.id)}
@@ -154,8 +154,11 @@ export function ScheduleTable() {
           <TableHeader>
             {/* border-strong so the header row reads as clearly separate from the
                 data rows below, instead of blending into the first row's own
-                faint divider. */}
-            <TableRow className="border-border-strong hover:bg-transparent">
+                faint divider. last:border-b overrides TableRow's own
+                last:border-0 — this row is the sole child of <thead>, so it
+                matches :last-child too and was silently losing its border
+                width (color was set, but width collapsed to 0). */}
+            <TableRow className="border-border-strong last:border-b hover:bg-transparent">
               <TableHead>Time</TableHead>
               <TableHead>Patient</TableHead>
               <TableHead>Reason</TableHead>
