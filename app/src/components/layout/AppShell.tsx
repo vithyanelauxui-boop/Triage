@@ -77,7 +77,7 @@ function NavItem({
           'group relative flex h-8 items-center gap-2.5 rounded-sm px-2 text-sm transition-colors',
           collapsed && 'justify-center px-0',
           isActive
-            ? 'bg-secondary font-medium text-foreground'
+            ? 'bg-primary/10 font-medium text-primary'
             : 'text-muted-foreground hover:bg-secondary/70 hover:text-foreground',
         )
       }
@@ -158,7 +158,7 @@ function DoctorMenu({ collapsed }: { collapsed: boolean }) {
               <div className="min-w-0 flex-1">
                 <p className="truncate text-xs font-medium leading-tight">{doctor.shortName}</p>
                 <p className="flex items-center gap-1 text-2xs text-muted-foreground">
-                  <span className="size-1.5 rounded-full bg-primary" />
+                  <span className="size-1.5 rounded-full bg-success" />
                   {doctor.status}
                 </p>
               </div>

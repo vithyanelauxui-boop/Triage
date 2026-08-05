@@ -23,9 +23,9 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 9%;
 
-    --primary: 0 0% 9%;               /* Vercel ink-black primary */
+    --primary: 225 84% 49%;           /* brand blue #1447e6 */
     --primary-foreground: 0 0% 100%;
-    --primary-deep: 0 0% 0%;          /* pure black hover */
+    --primary-deep: 225 84% 40%;      /* darker blue hover */
 
     --secondary: 0 0% 98%;            /* canvas-soft #fafafa */
     --secondary-foreground: 0 0% 9%;
@@ -42,7 +42,7 @@
     --border: 0 0% 92%;               /* hairline #ebebeb */
     --border-strong: 0 0% 82%;        /* #a1a1a1-ish stronger hairline */
     --input: 0 0% 82%;
-    --ring: 211 100% 47%;             /* Vercel blue #0070f3 focus */
+    --ring: 225 84% 49%;              /* match brand blue #1447e6 */
 
     /* Clinical severity (extension) */
     --critical: 0 100% 43%;           /* Vercel red #ee0000 (deepened for text) */
