@@ -76,10 +76,10 @@ body,
     --success-bg: 152 58% 95%;
     --success-border: 152 42% 84%;
 
-    --info: 211 100% 47%;             /* Vercel blue #0070f3 */
+    --info: 211 96% 43%;              /* text/dot #046BD7 */
     --info-foreground: 0 0% 100%;
-    --info-bg: 214 100% 96%;          /* link-bg-soft #d3e5ff */
-    --info-border: 214 90% 88%;
+    --info-bg: 211 56% 91%;           /* #DCE8F5 */
+    --info-border: 211 66% 82%;       /* #B1CFEF */
   }
 }
 
