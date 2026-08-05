@@ -23,46 +23,44 @@ export function NextPatientCard() {
     <Card className="overflow-hidden">
       <div className="flex items-center justify-between border-b border-border px-4 py-2">
         <h2 className="text-xs font-medium text-muted-foreground">Up next</h2>
-        <Badge variant="warning" dot>
-          <Clock className="size-3" />
+        <span className="inline-flex items-center gap-1.5 text-xs font-medium text-warning">
+          <Clock className="size-3.5" />
           Waiting {p.waitingMins} min
-        </Badge>
+        </span>
       </div>
 
       <div className="p-4">
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <div className="flex min-w-0 items-center gap-3">
+          <div className="flex min-w-0 items-start gap-3">
             <Avatar className="size-11">
               <AvatarFallback className="bg-surface-night text-sm text-white">{p.initials}</AvatarFallback>
             </Avatar>
             <div className="min-w-0">
               <h3 className="text-xl font-medium tracking-tight">{p.name}</h3>
-              <p className="num text-xs text-muted-foreground">
-                {p.age} yrs · {p.gender} · {p.id}
+              <p className="mt-0.5 text-xs text-muted-foreground">
+                <span className="num">{p.age} yrs · {p.gender} · {p.id}</span> · {p.condition}
               </p>
-              <p className="mt-0.5 text-sm text-muted-foreground">{p.condition}</p>
+              {/* Tags align under the identity line, not under the avatar */}
+              <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                {p.tags.map((t) => (
+                  <Badge key={t} variant="default">
+                    {t}
+                  </Badge>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <Button variant="default" size="lg">
+          <div className="flex shrink-0 items-center gap-2">
+            <Button variant="default" size="md">
               <FileText />
               Patient chart
             </Button>
-            <Button variant="primary" size="lg">
+            <Button variant="primary" size="md">
               Start consultation
               <ArrowRight />
             </Button>
           </div>
-        </div>
-
-        <div className="mt-3 flex flex-wrap items-center gap-1.5">
-          <Badge variant="default">{p.appointmentTime}</Badge>
-          {p.tags.map((t) => (
-            <Badge key={t} variant="default">
-              {t}
-            </Badge>
-          ))}
         </div>
 
         {/* Pre-consult context: everything the doctor would otherwise open 4 screens for */}

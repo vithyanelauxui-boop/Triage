@@ -1,5 +1,6 @@
 import { KpiStrip } from '@/components/dashboard/KpiStrip';
 import { AttentionPanel } from '@/components/dashboard/AttentionPanel';
+import { NextPatientCard } from '@/components/dashboard/NextPatientCard';
 import { ScheduleTable } from '@/components/dashboard/ScheduleTable';
 import {
   PendingDecisionsCard,
@@ -31,8 +32,9 @@ export function Dashboard() {
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <div className="space-y-4 lg:col-span-2">
-            {/* Who am I seeing next + the rest of the day — up-next is pinned in the table,
-                and clicking any row opens full prep (vitals, allergies, blockers). */}
+            {/* 3 — Who am I seeing right now, and am I prepared? */}
+            <NextPatientCard />
+            {/* 4 — What does the rest of the day look like? Any row opens full prep. */}
             <ScheduleTable />
           </div>
 
