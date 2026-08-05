@@ -17,6 +17,17 @@
    Clinical severity is the other deliberate extension: in medical
    software colour must encode risk, never decorate.
    ============================================================ */
+/* Lock the document to the viewport so only <main> (inside AppShell) scrolls.
+   Without this, html/body have no bounded height, so content can overflow
+   past AppShell's own h-full + overflow-hidden root and force a second,
+   competing scrollbar at the document level. */
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
 @layer base {
   :root {
     --background: 0 0% 95%;           /* app canvas #F2F2F2 — cards stay white, sitting above it */
