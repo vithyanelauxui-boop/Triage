@@ -95,7 +95,7 @@ function NavItem({
             <>
               <span className="truncate">{item.label}</span>
               {item.badge && (
-                <Badge variant="default" className="ml-auto num">
+                <Badge variant="default" className="ml-auto num rounded-sm">
                   {item.badge}
                 </Badge>
               )}

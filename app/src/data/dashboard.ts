@@ -201,7 +201,6 @@ export const schedule: ScheduleItem[] = [
 ];
 
 export const pendingDecisions: PendingDecision[] = [
-  { id: 'pd-1', action: 'Sign lab report', patientName: 'Raj Patel', detail: 'Potassium, Creatinine', priority: 'High', dueLabel: 'Before 10:00' },
   { id: 'pd-2', action: 'Approve imaging', patientName: 'Maria Garcia', detail: 'CT coronary angiography', priority: 'Medium', dueLabel: 'Before 09:30' },
   { id: 'pd-3', action: 'Discharge review', patientName: 'Arjun Singh', detail: 'Post angioplasty', priority: 'Medium', dueLabel: 'Today' },
   { id: 'pd-4', action: 'Renew prescription', patientName: 'Sunita Kapoor', detail: 'Atorvastatin 40 mg', priority: 'Low', dueLabel: 'This week' },
@@ -213,5 +212,4 @@ export const recentActivity: ActivityItem[] = [
   { id: 'ac-2', action: 'Approved imaging request', patientName: 'Farooq Ahmed', minsAgo: 35 },
   { id: 'ac-3', action: 'Renewed Metformin 500 mg', patientName: 'Latha Iyer', minsAgo: 58 },
   { id: 'ac-4', action: 'Referred to Endocrinology', patientName: 'Sunita Kapoor', minsAgo: 92 },
-  { id: 'ac-5', action: 'Completed consultation', patientName: 'Farooq Ahmed', minsAgo: 115 },
 ];
