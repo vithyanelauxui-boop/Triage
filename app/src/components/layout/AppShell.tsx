@@ -191,7 +191,7 @@ function DoctorMenu({ collapsed }: { collapsed: boolean }) {
 function NavBody({ collapsed }: { collapsed: boolean }) {
   return (
     <>
-      <nav className={cn('flex-1 space-y-0.5 overflow-y-auto px-2 pb-3', collapsed && 'px-1.5')}>
+      <nav className={cn('flex-1 space-y-0.5 overflow-y-auto px-2 pb-3 pt-3', collapsed && 'px-1.5')}>
         <NavGroup items={NAV_PRIMARY} collapsed={collapsed} />
         <NavGroup title="Clinical" items={NAV_CLINICAL} collapsed={collapsed} />
         <NavGroup title="Practice" items={NAV_SECONDARY} collapsed={collapsed} />
@@ -222,23 +222,28 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       {/* Full-width top bar — brand, section context, global search, notifications.
           A polarity-flipped dark band (design.md's dark-surface pattern) that spans
           above both the sidebar and the content, rather than living inside either. */}
-      <header className="flex h-12 shrink-0 items-center gap-3 bg-surface-night px-3 text-white">
+      <header className="flex h-12 shrink-0 items-center gap-4 bg-surface-night px-4 text-white">
         <div className="flex items-center gap-2">
           <BrandMark className="text-white" />
           <span className="text-md font-semibold tracking-tight">Triage</span>
         </div>
 
-        <div className="hidden h-5 w-px bg-white/15 md:block" />
+        {/* Full-height rule — flush to both the top and bottom edge of the bar,
+            not a short floating tick — so it reads as a structural divider. */}
+        <div className="hidden w-px self-stretch bg-white/15 md:block" />
 
-        <Button
-          variant="ghost"
-          size="iconSm"
-          onClick={() => setCollapsed((v) => !v)}
-          aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          className="hidden text-white/70 hover:bg-white/10 hover:text-white md:inline-flex"
-        >
-          {collapsed ? <PanelLeft /> : <PanelLeftClose />}
-        </Button>
+        <div className="hidden items-center gap-2 md:flex">
+          <Button
+            variant="ghost"
+            size="iconSm"
+            onClick={() => setCollapsed((v) => !v)}
+            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            className="text-white/70 hover:bg-white/10 hover:text-white"
+          >
+            {collapsed ? <PanelLeft /> : <PanelLeftClose />}
+          </Button>
+          <span className="text-sm text-white/70">{pageTitle}</span>
+        </div>
 
         <Button
           variant="ghost"
@@ -249,8 +254,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         >
           <Menu />
         </Button>
-
-        <span className="hidden text-sm text-white/70 md:inline">{pageTitle}</span>
 
         {/* Global patient search — the doctor's fastest path to any record */}
         <div className="relative mx-auto w-full max-w-md">
