@@ -1,9 +1,9 @@
 import { ArrowRight, Clock, FileText, ShieldCheck } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { nextPatient } from '@/data/dashboard';
+import avatar7 from '@/assets/avatar-7.svg';
 
 function Stat({ label, value, tone }: { label: string; value: string; tone?: 'warning' }) {
   return (
@@ -32,9 +32,7 @@ export function NextPatientCard() {
       <div className="p-4">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex min-w-0 items-start gap-3">
-            <Avatar className="size-11">
-              <AvatarFallback className="bg-surface-night text-sm text-white">{p.initials}</AvatarFallback>
-            </Avatar>
+            <img src={avatar7} alt={p.name} className="size-11 shrink-0 rounded-full" />
             <div className="min-w-0">
               <h3 className="text-xl font-medium tracking-tight">{p.name}</h3>
               <p className="mt-0.5 text-xs text-muted-foreground">
