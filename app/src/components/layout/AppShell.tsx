@@ -53,7 +53,7 @@ const NAV_SECONDARY = [
 
 function BrandMark() {
   return (
-    <svg viewBox="0 0 324 287" className="size-6 shrink-0 text-foreground" fill="currentColor" aria-label="Predigle">
+    <svg viewBox="0 0 324 287" className="size-6 shrink-0 text-foreground" fill="currentColor" aria-label="Triage">
       <path d="M86.4354 0.535258C115.035 -2.73916 141.233 9.31163 161.723 28.4186C168.661 21.3238 176.684 15.3746 185.488 10.7911C207.807 -0.725486 233.774 -2.94131 257.719 4.62852C281.645 12.297 301.537 29.1612 313.022 51.5074C326.523 77.7765 325.649 108.442 316.772 136.032C306.884 167.156 285.063 193.09 256.083 208.15C225.854 223.44 190.805 226.16 158.579 215.716C128.322 205.89 103.188 184.478 88.6781 156.166C96.9081 151.658 105.637 147.229 113.969 142.81C121.497 155.692 128.295 164.771 140.192 173.906C180.727 205.031 243.554 197.821 274.296 156.332C289.038 136.433 296.943 109.82 293.779 84.9952C291.528 67.2892 281.245 53.1031 267.216 42.7145C265.424 41.4747 262.885 39.9479 260.932 38.9064C245.126 30.4737 226.62 28.6368 209.462 33.797C187.89 40.3644 172.006 56.7623 161.723 76.2374C148.748 53.3731 130.478 35.0182 103.067 31.5094C85.0404 29.0655 66.7865 33.9552 52.3949 45.0831C39.4359 55.2403 31.1039 70.1793 29.2704 86.5421C21.1498 157.307 89.5223 249.204 161.611 257.31L161.62 286.319C77.9848 278.453 7.94816 190.787 0.633215 110.287C-1.94638 81.901 3.02579 56.5504 21.6576 34.2565C37.8158 14.7364 61.1776 2.57481 86.4354 0.535258Z" />
       <path d="M58.7476 77.8384L132.973 77.8726L132.937 110.512L58.7906 110.42C58.583 99.7412 58.7481 88.5562 58.7476 77.8384Z" />
       <path d="M222.377 67.9414C236.874 65.188 250.854 74.7227 253.578 89.2232C256.303 103.724 246.742 117.684 232.235 120.382C217.768 123.074 203.856 113.544 201.137 99.082C198.417 84.6201 207.919 70.6875 222.377 67.9414Z" />
@@ -228,7 +228,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       >
         <div className={cn('flex h-12 items-center gap-2 px-3', collapsed && 'justify-center px-0')}>
           <BrandMark />
-          {!collapsed && <span className="text-md font-semibold tracking-tight">Predigle</span>}
+          {!collapsed && <span className="text-md font-semibold tracking-tight">Triage</span>}
         </div>
 
         <NavBody collapsed={collapsed} />
@@ -239,7 +239,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <SheetContent side="left" onClick={() => setMobileOpen(false)}>
           <SheetTitle className="flex h-12 items-center gap-2 px-3 text-md font-semibold tracking-tight">
             <BrandMark />
-            Predigle
+            Triage
           </SheetTitle>
           <NavBody collapsed={false} />
         </SheetContent>
@@ -268,7 +268,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <Menu />
           </Button>
 
-          <span className="text-sm font-medium md:hidden">Predigle</span>
+          <span className="text-sm font-medium md:hidden">Triage</span>
           <span className="hidden text-sm text-muted-foreground md:inline">{pageTitle}</span>
 
           {/* Global patient search — the doctor's fastest path to any record */}
