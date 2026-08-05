@@ -1,22 +1,23 @@
 import { useState } from 'react';
-import { CalendarDays, ShieldAlert, TriangleAlert } from 'lucide-react';
+import { CalendarDays, ChevronRight, ShieldAlert, TriangleAlert } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { schedule, type ScheduleItem, type ScheduleStatus } from '@/data/dashboard';
+import { usePatientSheet } from './PatientSheet';
+import { nextPatient, schedule, type ScheduleItem, type ScheduleStatus } from '@/data/dashboard';
 
 const statusMeta: Record<
   ScheduleStatus,
   { label: string; variant: 'default' | 'critical' | 'warning' | 'success' | 'info'; action: string }
 > = {
-  waiting: { label: 'Waiting', variant: 'warning', action: 'Start' },
-  'in-progress': { label: 'In progress', variant: 'info', action: 'Continue' },
+  waiting: { label: 'Waiting', variant: 'warning', action: 'Start consult' },
+  'in-progress': { label: 'In progress', variant: 'info', action: 'Continue consult' },
   completed: { label: 'Completed', variant: 'success', action: 'View summary' },
   missed: { label: 'Missed', variant: 'critical', action: 'Reschedule' },
-  confirmed: { label: 'Confirmed', variant: 'default', action: 'Start' },
+  confirmed: { label: 'Confirmed', variant: 'default', action: 'Start consult' },
 };
 
 const TABS = [
@@ -34,9 +35,28 @@ function count(status: string) {
 function Row({ item }: { item: ScheduleItem }) {
   const meta = statusMeta[item.status];
   const isDone = item.status === 'completed' || item.status === 'missed';
+  const openPatient = usePatientSheet();
 
   return (
-    <TableRow className={cn(item.isUpNext && 'bg-primary/[0.06] hover:bg-primary/[0.09]')}>
+    <TableRow
+      onClick={() =>
+        openPatient({
+          name: item.patientName,
+          id: item.patientId,
+          age: item.age,
+          initials: item.initials,
+          subtitle: item.reason,
+          meta: `${item.time} · ${meta.label}`,
+          severity: item.flag,
+          detail: item.isUpNext
+            ? `Waiting ${nextPatient.waitingMins} min · ${nextPatient.visitType} · ${nextPatient.openItems} pre-consult items to review. Allergies: ${nextPatient.allergies}.`
+            : undefined,
+          vitals: item.isUpNext ? nextPatient.vitals : undefined,
+          primaryAction: meta.action,
+        })
+      }
+      className={cn('group cursor-pointer', item.isUpNext && 'bg-secondary hover:bg-muted')}
+    >
       <TableCell className="w-px whitespace-nowrap">
         <span className={cn('num text-sm', isDone ? 'text-muted-foreground' : 'font-medium')}>{item.time}</span>
       </TableCell>
@@ -76,19 +96,7 @@ function Row({ item }: { item: ScheduleItem }) {
       </TableCell>
 
       <TableCell className="w-px text-right">
-        {/* Actions reveal on hover — keeps 8 rows scannable instead of 8 competing buttons */}
-        <div
-          className={cn(
-            'transition-opacity',
-            item.isUpNext || item.status === 'in-progress'
-              ? 'opacity-100'
-              : 'opacity-0 group-hover:opacity-100 group-focus-within:opacity-100',
-          )}
-        >
-          <Button size="sm" variant={item.isUpNext || item.status === 'in-progress' ? 'primary' : 'default'}>
-            {meta.action}
-          </Button>
-        </div>
+        <ChevronRight className="size-4 text-muted-foreground/40 transition-colors group-hover:text-foreground" />
       </TableCell>
     </TableRow>
   );
@@ -129,7 +137,7 @@ export function ScheduleTable() {
               <TableHead>Patient</TableHead>
               <TableHead>Reason</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead className="text-right">Action</TableHead>
+              <TableHead className="w-px" aria-label="Open" />
             </TableRow>
           </TableHeader>
           <TableBody>
