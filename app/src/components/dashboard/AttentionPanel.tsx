@@ -1,76 +1,77 @@
 import { useState } from 'react';
-import { ArrowRight, ChevronRight, ShieldAlert, TriangleAlert } from 'lucide-react';
+import { ChevronRight, ShieldAlert, TriangleAlert } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { usePatientSheet } from './PatientSheet';
 import type { AttentionItem, Severity } from '@/data/dashboard';
 
 const severityMeta: Record<
   Exclude<Severity, 'routine'>,
-  { rail: string; label: string; icon: React.ElementType; badge: 'critical' | 'warning' }
+  { label: string; icon: React.ElementType; badge: 'critical' | 'warning' }
 > = {
-  critical: { rail: 'bg-critical', label: 'Critical', icon: ShieldAlert, badge: 'critical' },
-  urgent: { rail: 'bg-warning', label: 'Urgent', icon: TriangleAlert, badge: 'warning' },
+  critical: { label: 'Critical', icon: ShieldAlert, badge: 'critical' },
+  urgent: { label: 'Urgent', icon: TriangleAlert, badge: 'warning' },
 };
 
 function AttentionRow({ item }: { item: AttentionItem }) {
   const meta = severityMeta[item.severity as Exclude<Severity, 'routine'>];
   const Icon = meta.icon;
+  const isCritical = item.severity === 'critical';
+  const openPatient = usePatientSheet();
 
   return (
-    <li className="group relative flex items-start gap-3 py-3 pl-4 pr-3 transition-colors hover:bg-secondary/60">
-      {/* Severity rail — encodes risk without flooding the row in colour */}
-      <span className={cn('absolute inset-y-0 left-0 w-[3px]', meta.rail)} aria-hidden="true" />
-
-      <Avatar className="mt-0.5 size-7">
+    <li
+      onClick={() =>
+        openPatient({
+          name: item.patientName,
+          id: item.patientId,
+          age: item.age,
+          initials: item.initials,
+          subtitle: item.headline,
+          meta: `${item.category} result`,
+          severity: item.severity as 'critical' | 'urgent',
+          value: item.value,
+          reference: item.reference,
+          detail: item.detail,
+          primaryAction: isCritical ? 'Review result' : 'Open result',
+        })
+      }
+      className="group flex cursor-pointer items-center gap-3 px-4 py-2.5 transition-colors hover:bg-secondary/70"
+    >
+      <Avatar className="size-7 shrink-0">
         <AvatarFallback className="text-2xs">{item.initials}</AvatarFallback>
       </Avatar>
 
       <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-          <span className="text-sm font-medium">{item.patientName}</span>
-          <span className="num text-2xs text-muted-foreground">
-            {item.age} yrs · {item.patientId}
-          </span>
-          <Badge variant={meta.badge} dot className="ml-auto">
-            <Icon className="size-3" />
-            {meta.label}
-          </Badge>
+        <div className="flex items-center gap-2">
+          <span className="truncate text-sm font-medium">{item.patientName}</span>
+          <span className="num shrink-0 text-2xs text-muted-foreground">{item.age} · {item.patientId}</span>
         </div>
 
-        <p className="mt-1 text-sm text-foreground">{item.headline}</p>
-
-        {/* The actual number is the clinical signal — give it real weight */}
-        {item.value && (
-          <div className="mt-1.5 flex flex-wrap items-baseline gap-2">
+        <div className="mt-0.5 flex items-baseline gap-2">
+          <span className="truncate text-sm text-foreground">{item.headline}</span>
+          {item.value && (
             <span
               className={cn(
-                'num rounded-xs px-1.5 py-0.5 text-sm font-semibold',
-                item.severity === 'critical' ? 'bg-critical-bg text-critical' : 'bg-warning-bg text-warning',
+                'num shrink-0 rounded-xs px-1 text-xs font-semibold',
+                isCritical ? 'bg-critical-bg text-critical' : 'bg-warning-bg text-warning',
               )}
             >
               {item.value}
             </span>
-            {item.reference && (
-              <span className="num text-2xs text-muted-foreground">{item.reference}</span>
-            )}
-          </div>
-        )}
-
-        <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{item.detail}</p>
-
-        <div className="mt-2 flex items-center gap-2">
-          <Button size="sm" variant={item.severity === 'critical' ? 'primary' : 'default'}>
-            Review now
-            <ArrowRight />
-          </Button>
-          <Button size="sm" variant="ghost" className="opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100">
-            Open chart
-          </Button>
-          <span className="num ml-auto text-2xs text-muted-foreground">{item.reportedMinsAgo} min ago</span>
+          )}
         </div>
       </div>
+
+      {/* Right cluster — all vertically centered on the row */}
+      <Badge variant={meta.badge} className="shrink-0">
+        <Icon className="size-3" />
+        {meta.label}
+      </Badge>
+      <span className="num hidden w-9 shrink-0 text-right text-2xs text-muted-foreground sm:block">{item.reportedMinsAgo}m</span>
+      <ChevronRight className="size-4 shrink-0 text-muted-foreground/50 transition-colors group-hover:text-foreground" />
     </li>
   );
 }
@@ -93,35 +94,22 @@ export function AttentionPanel({
   ];
 
   return (
-    <section
-      className={cn(
-        'overflow-hidden rounded-lg border bg-card',
-        counts.critical > 0 ? 'border-critical-border' : 'border-border',
-      )}
-    >
-      <div
-        className={cn(
-          'flex flex-wrap items-center justify-between gap-3 border-b px-4 py-2.5',
-          counts.critical > 0 ? 'border-critical-border bg-critical-bg/50' : 'border-border',
-        )}
-      >
+    <section className="overflow-hidden rounded-lg border border-border bg-card">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-4 py-2.5">
         <div className="flex items-center gap-2">
           <ShieldAlert className={cn('size-4', counts.critical > 0 ? 'text-critical' : 'text-muted-foreground')} />
           <h2 className="text-md font-medium">Needs your attention</h2>
           <span className="num text-xs text-muted-foreground">{total} open</span>
         </div>
 
-        {/* Segmented filter keeps critical items one tap away, never buried */}
-        <div className="flex items-center gap-1 rounded-sm border border-border bg-background p-0.5">
+        <div className="flex items-center gap-0.5 rounded-md border border-border bg-secondary/60 p-0.5">
           {filters.map((f) => (
             <button
               key={f.id}
               onClick={() => setFilter(f.id)}
               className={cn(
-                'flex items-center gap-1.5 rounded-xs px-2 py-1 text-xs transition-colors',
-                filter === f.id
-                  ? 'bg-secondary font-medium text-foreground'
-                  : 'text-muted-foreground hover:text-foreground',
+                'flex items-center gap-1.5 rounded-sm px-2 py-1 text-xs transition-colors',
+                filter === f.id ? 'bg-card font-medium text-foreground shadow-xs' : 'text-muted-foreground hover:text-foreground',
               )}
             >
               {f.label}
@@ -146,7 +134,7 @@ export function AttentionPanel({
         ))}
       </ul>
 
-      <div className="border-t border-border px-4 py-2">
+      <div className="border-t border-border px-4 py-1.5">
         <Button variant="link" className="text-xs text-muted-foreground hover:text-foreground">
           View all {total} items
           <ChevronRight className="size-3" />

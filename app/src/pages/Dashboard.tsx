@@ -7,10 +7,12 @@ import {
   QuickActionsCard,
   RecentActivityCard,
 } from '@/components/dashboard/SidePanels';
+import { PatientSheetProvider } from '@/components/dashboard/PatientSheet';
 import { attentionCounts, attentionItems, doctor, kpis, today } from '@/data/dashboard';
 
 export function Dashboard() {
   return (
+    <PatientSheetProvider>
     <div className="mx-auto max-w-[1400px] px-4 py-5 lg:px-6">
       <header className="mb-5">
         <h1 className="text-2xl font-medium tracking-tight">
@@ -32,7 +34,7 @@ export function Dashboard() {
           <div className="space-y-4 lg:col-span-2">
             {/* 3 — Who am I seeing right now, and am I prepared? */}
             <NextPatientCard />
-            {/* 4 — What does the rest of the day look like? */}
+            {/* 4 — What does the rest of the day look like? Any row opens full prep. */}
             <ScheduleTable />
           </div>
 
@@ -47,5 +49,6 @@ export function Dashboard() {
         </div>
       </div>
     </div>
+    </PatientSheetProvider>
   );
 }

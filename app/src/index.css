@@ -1,20 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ============================================================
-   Supabase design language (DESIGN.md)
-   White canvas · near-black ink #171717 · single emerald accent
-   #3ecf8e · grey hairline ladder · square-ish 6px radii.
-   Clinical severity colours are the one deliberate extension:
-   in medical software, colour must encode risk.
+   Vercel (Geist) design language — getdesign.md/vercel
+   Canvas #ffffff · ink #171717 · body #4d4d4d · hairline #ebebeb ·
+   ink-black primary action · #0070f3 for links/focus · Geist +
+   Geist Mono · 6px radii on controls, 12px on cards.
+   Clinical severity is the one deliberate extension: in medical
+   software colour must encode risk, never decorate.
    ============================================================ */
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 9%;
+    --foreground: 0 0% 9%;            /* ink #171717 */
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 9%;
@@ -22,46 +23,47 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 9%;
 
-    --primary: 152 61% 53%;
-    --primary-foreground: 0 0% 9%;
-    --primary-deep: 158 66% 42%;
+    --primary: 225 84% 49%;           /* brand blue #1447e6 */
+    --primary-foreground: 0 0% 100%;
+    --primary-deep: 225 84% 40%;      /* darker blue hover */
 
-    --secondary: 0 0% 98%;
+    --secondary: 0 0% 98%;            /* canvas-soft #fafafa */
     --secondary-foreground: 0 0% 9%;
 
-    --muted: 0 0% 98%;
-    --muted-foreground: 0 0% 44%;
+    --muted: 0 0% 96%;                /* #f5f5f5 */
+    --muted-foreground: 0 0% 40%;     /* body #4d4d4d → mute range */
 
     --accent: 0 0% 96%;
     --accent-foreground: 0 0% 9%;
 
     --surface: 0 0% 98%;
-    --surface-night: 0 0% 11%;
+    --surface-night: 0 0% 9%;
 
-    --border: 0 0% 93%;
-    --border-strong: 0 0% 87%;
-    --input: 0 0% 87%;
-    --ring: 152 61% 53%;
+    --border: 0 0% 92%;               /* hairline #ebebeb */
+    --border-strong: 0 0% 82%;        /* #a1a1a1-ish stronger hairline */
+    --input: 0 0% 82%;
+    --ring: 225 84% 49%;              /* match brand blue #1447e6 */
 
-    --critical: 4 90% 43%;
+    /* Clinical severity (extension) */
+    --critical: 0 100% 43%;           /* Vercel red #ee0000 (deepened for text) */
     --critical-foreground: 0 0% 100%;
-    --critical-bg: 4 100% 97%;
-    --critical-border: 4 80% 89%;
+    --critical-bg: 0 100% 98%;
+    --critical-border: 0 80% 91%;
 
-    --warning: 32 90% 40%;
+    --warning: 28 88% 36%;            /* warning-deep #ab570a for legible text */
     --warning-foreground: 0 0% 100%;
-    --warning-bg: 38 100% 96%;
-    --warning-border: 38 80% 86%;
+    --warning-bg: 38 100% 91%;        /* warning-soft #ffefcf */
+    --warning-border: 38 85% 82%;
 
-    --success: 158 66% 30%;
+    --success: 158 64% 28%;           /* clinical "stable" green, legible */
     --success-foreground: 0 0% 100%;
-    --success-bg: 152 60% 96%;
-    --success-border: 152 45% 85%;
+    --success-bg: 152 58% 95%;
+    --success-border: 152 42% 84%;
 
-    --info: 217 85% 45%;
+    --info: 211 100% 47%;             /* Vercel blue #0070f3 */
     --info-foreground: 0 0% 100%;
-    --info-bg: 214 100% 97%;
-    --info-border: 214 80% 89%;
+    --info-bg: 214 100% 96%;          /* link-bg-soft #d3e5ff */
+    --info-border: 214 90% 88%;
   }
 }
 
@@ -78,17 +80,17 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Geist', 'Inter', system-ui, -apple-system, sans-serif;
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1,
-  h2,
-  h3 {
-    letter-spacing: -0.02em;
-  }
+  /* Vercel signature: tight negative tracking on display sizes */
+  h1 { letter-spacing: -0.04em; }
+  h2, h3 { letter-spacing: -0.02em; }
+
+  ::selection { background: #171717; color: #f2f2f2; }
 }
 
 @layer utilities {

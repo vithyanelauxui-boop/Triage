@@ -1,6 +1,6 @@
-# Predigle — Doctor Dashboard
+# Triage — Doctor Dashboard
 
-A role-based clinical dashboard for the **Doctor** role, built for the Predigle / Esper Group design
+A role-based clinical dashboard for the **Doctor** role, built for the Triage / Esper Group design
 assessment. Working React application, not a mockup.
 
 **[→ Full UX rationale and user flow](./UX-RATIONALE.md)**

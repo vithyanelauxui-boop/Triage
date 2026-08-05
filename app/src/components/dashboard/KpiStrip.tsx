@@ -56,9 +56,9 @@ function KpiCell({ kpi, isFirst }: { kpi: Kpi; isFirst: boolean }) {
       </div>
 
       {/* 7-day trend — a number without direction can't be judged */}
-      <div className="h-8 w-full" aria-hidden="true">
+      <div className="h-9 w-full" aria-hidden="true">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data} margin={{ top: 2, right: 0, bottom: 0, left: 0 }}>
+          <AreaChart data={data} margin={{ top: 5, right: 2, bottom: 5, left: 2 }}>
             <defs>
               <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor={stroke} stopOpacity={0.18} />
