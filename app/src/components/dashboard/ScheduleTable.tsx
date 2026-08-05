@@ -135,7 +135,12 @@ export function ScheduleTable() {
             {TABS.map((t) => (
               <TabsTrigger key={t.id} value={t.id}>
                 {t.label}
-                <span className="num ml-1.5 rounded-full bg-primary/10 px-1.5 py-0.5 text-2xs font-semibold text-primary">
+                <span
+                  className={cn(
+                    'num ml-1.5 rounded-full px-1.5 py-0.5 text-2xs font-semibold',
+                    tab === t.id ? 'bg-primary text-primary-foreground' : 'bg-secondary text-muted-foreground',
+                  )}
+                >
                   {count(t.id)}
                 </span>
               </TabsTrigger>
