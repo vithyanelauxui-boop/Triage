@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import { Command, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { usePatientSheet } from './PatientSheet';
 import { pendingDecisions, recentActivity } from '@/data/dashboard';
 
@@ -125,17 +126,30 @@ export function QuickActionsCard() {
       <CardHeader className="border-b border-border">
         <CardTitle className="text-sm">Quick actions</CardTitle>
       </CardHeader>
-      <div className="grid grid-cols-2 gap-px bg-border">
-        {quickActions.map((a) => (
-          <button
-            key={a.label}
-            className="flex items-center gap-2 bg-card px-3 py-2.5 text-left text-xs transition-colors hover:bg-secondary focus-visible:bg-secondary focus-visible:outline-none"
-          >
-            <a.icon className="size-3.5 shrink-0 text-muted-foreground" strokeWidth={1.75} />
-            <span className="truncate">{a.label}</span>
-          </button>
-        ))}
-      </div>
+      {/* Vercel's own command menu (cmdk) as a static 2-up grid: arrow-key
+          navigation + Enter-to-select come for free, matching the palette
+          interaction model doctors already get from Cmd+K search. */}
+      <Command shouldFilter={false} loop>
+        {/* Visually hidden but focusable: gives keyboard users a real tab
+            stop to land on, so arrow keys + Enter drive selection the same
+            way they do in Vercel's own command menu. */}
+        <CommandInput aria-label="Quick actions" className="sr-only h-0 border-0 p-0" tabIndex={0} />
+        <CommandList className="max-h-none">
+          <CommandGroup className="grid grid-cols-2 gap-px bg-border p-0 [&_[cmdk-group-items]]:contents">
+            {quickActions.map((a) => (
+              <CommandItem
+                key={a.label}
+                value={a.label}
+                onSelect={() => {}}
+                className="rounded-none bg-card py-2.5 data-[selected=true]:bg-secondary"
+              >
+                <a.icon strokeWidth={1.75} />
+                <span className="truncate">{a.label}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        </CommandList>
+      </Command>
     </Card>
   );
 }
