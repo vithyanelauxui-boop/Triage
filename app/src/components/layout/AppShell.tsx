@@ -43,10 +43,10 @@ const NAV_PRIMARY = [
 const NAV_CLINICAL = [
   { label: 'Lab Results', to: '/lab-results', icon: FlaskConical, badge: '2' },
   { label: 'Prescriptions', to: '/prescriptions', icon: Pill },
-  { label: 'Tasks', to: '/tasks', icon: ListChecks, badge: '5' },
 ];
 
 const NAV_SECONDARY = [
+  { label: 'Tasks', to: '/tasks', icon: ListChecks, badge: '5' },
   { label: 'Reports', to: '/reports', icon: BarChart3 },
   { label: 'Messages', to: '/messages', icon: MessageSquare, badge: '3' },
 ];

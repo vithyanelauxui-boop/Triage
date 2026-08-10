@@ -94,7 +94,7 @@ export const kpis: Kpi[] = [
   {
     id: 'pending',
     label: 'Awaiting my sign-off',
-    value: '5',
+    value: '4',
     helpText: '1 high priority',
     trend: [8, 6, 7, 5, 6, 4, 5],
     deltaPct: 25,
