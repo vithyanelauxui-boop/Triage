@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { CardTitle } from '@/components/ui/card';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { usePatientSheet } from './PatientSheet';
 import type { AttentionItem, Severity } from '@/data/dashboard';
@@ -99,7 +100,7 @@ export function AttentionPanel({
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-4 py-2.5">
         <div className="flex items-center gap-2">
           <ShieldAlert className={cn('size-4', counts.critical > 0 ? 'text-critical' : 'text-muted-foreground')} />
-          <h2 className="text-md font-medium">Needs your attention</h2>
+          <CardTitle>Needs your attention</CardTitle>
           <span className="num text-xs text-muted-foreground">({total} open)</span>
         </div>
 

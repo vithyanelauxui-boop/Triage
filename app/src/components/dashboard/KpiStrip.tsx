@@ -2,6 +2,7 @@ import { ArrowDown, ArrowUp, ChevronDown, Minus } from 'lucide-react';
 import { Area, AreaChart, ResponsiveContainer } from 'recharts';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { CardTitle } from '@/components/ui/card';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -87,7 +88,7 @@ export function KpiStrip({ kpis }: { kpis: Kpi[] }) {
   return (
     <section className="overflow-hidden rounded-lg border border-border bg-card">
       <div className="flex items-center justify-between border-b border-border px-4 py-2">
-        <h2 className="text-xs font-medium text-muted-foreground">Clinic overview</h2>
+        <CardTitle>Clinic overview</CardTitle>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="sm">

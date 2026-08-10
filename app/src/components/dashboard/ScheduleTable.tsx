@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
@@ -122,7 +123,7 @@ export function ScheduleTable() {
   return (
     <section className="overflow-hidden rounded-lg border border-border bg-card">
       <div className="flex flex-wrap items-center justify-between gap-3 px-4 pb-3 pt-3">
-        <h2 className="text-md font-medium">Today's schedule</h2>
+        <CardTitle>Today's schedule</CardTitle>
         <Button variant="ghost" size="sm">
           <CalendarDays />
           Full calendar

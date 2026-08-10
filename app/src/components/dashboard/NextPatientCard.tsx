@@ -22,7 +22,7 @@ export function NextPatientCard() {
   return (
     <Card className="overflow-hidden">
       <CardHeader className="border-b border-border">
-        <CardTitle className="text-sm">Up next</CardTitle>
+        <CardTitle>Up next</CardTitle>
         <span className="inline-flex items-center gap-1.5 text-xs font-medium text-warning">
           <Clock className="size-3.5" />
           Waiting {p.waitingMins} min

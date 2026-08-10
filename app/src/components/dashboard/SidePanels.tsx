@@ -27,7 +27,7 @@ export function PendingDecisionsCard() {
   return (
     <Card className="overflow-hidden">
       <CardHeader className="border-b border-border">
-        <CardTitle className="text-sm">
+        <CardTitle>
           Awaiting my sign-off{' '}
           <span className="num font-normal text-muted-foreground">({pendingDecisions.length})</span>
         </CardTitle>
@@ -77,7 +77,7 @@ export function RecentActivityCard() {
   return (
     <Card className="overflow-hidden">
       <CardHeader className="border-b border-border">
-        <CardTitle className="text-sm">Recent activity</CardTitle>
+        <CardTitle>Recent activity</CardTitle>
         <span className="text-2xs text-muted-foreground">Last 2 hours</span>
       </CardHeader>
 
@@ -124,7 +124,7 @@ export function QuickActionsCard() {
   return (
     <Card className="overflow-hidden">
       <CardHeader className="border-b border-border">
-        <CardTitle className="text-sm">Quick actions</CardTitle>
+        <CardTitle>Quick actions</CardTitle>
       </CardHeader>
       {/* Vercel's own command menu (cmdk) as a static 2-up grid: arrow-key
           navigation + Enter-to-select come for free, matching the palette
