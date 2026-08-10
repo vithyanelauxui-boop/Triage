@@ -23,7 +23,12 @@ export const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      'relative -mb-px flex items-center border-b-2 border-transparent pb-2 pt-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground data-[state=active]:border-primary data-[state=active]:font-medium data-[state=active]:text-primary',
+      // No vertical padding or border here — the label span (see call sites)
+      // owns pt/pb/-mb-px/border-b-2 itself via group-data-*, so the
+      // underline hugs just the label text instead of stretching across
+      // the whole trigger (label + badge). This element's height is
+      // whatever its tallest child (the label span) makes it.
+      'group relative flex items-center text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground data-[state=active]:font-medium data-[state=active]:text-primary',
       className,
     )}
     {...props}
