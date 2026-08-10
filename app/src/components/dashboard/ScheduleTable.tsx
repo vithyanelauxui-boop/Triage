@@ -135,12 +135,10 @@ export function ScheduleTable() {
           <TabsList className="w-full justify-start">
             {TABS.map((t) => (
               <TabsTrigger key={t.id} value={t.id}>
-                <span className="-mb-px border-b-2 border-transparent px-2 pb-2 pt-1 group-data-[state=active]:border-primary">
-                  {t.label}
-                </span>
+                {t.label}
                 <span
                   className={cn(
-                    'num rounded-full px-1.5 py-0.5 text-2xs font-semibold',
+                    'num ml-1.5 rounded-full px-1.5 py-0.5 text-2xs font-semibold',
                     tab === t.id ? 'bg-primary/10 text-primary' : 'bg-secondary text-muted-foreground',
                   )}
                 >
