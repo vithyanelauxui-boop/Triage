@@ -201,8 +201,8 @@ export const schedule: ScheduleItem[] = [
 ];
 
 export const pendingDecisions: PendingDecision[] = [
-  { id: 'pd-2', action: 'Approve imaging', patientName: 'Maria Garcia', detail: 'CT coronary angiography', priority: 'Medium', dueLabel: 'Before 09:30' },
-  { id: 'pd-3', action: 'Discharge review', patientName: 'Arjun Singh', detail: 'Post angioplasty', priority: 'Medium', dueLabel: 'Today' },
+  { id: 'pd-2', action: 'Sign discharge summary', patientName: 'Farooq Ahmed', detail: 'Post-op review', priority: 'Medium', dueLabel: 'Today' },
+  { id: 'pd-3', action: 'Review ECG', patientName: 'Divya Menon', detail: 'Palpitations', priority: 'Medium', dueLabel: 'Today' },
   { id: 'pd-4', action: 'Renew prescription', patientName: 'Sunita Kapoor', detail: 'Atorvastatin 40 mg', priority: 'Low', dueLabel: 'This week' },
   { id: 'pd-5', action: 'Call patient', patientName: 'Ramesh Kumar', detail: 'Discuss test results', priority: 'Low', dueLabel: 'This week' },
 ];
