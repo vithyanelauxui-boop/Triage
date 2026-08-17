@@ -1,4 +1,4 @@
-import { ClinicOverviewFrame } from '@/components/dashboard/ClinicOverviewFrame';
+import { ClinicOverviewCard } from '@/components/dashboard/ClinicOverviewCard';
 import { AttentionPanel } from '@/components/dashboard/AttentionPanel';
 import { NextPatientCard } from '@/components/dashboard/NextPatientCard';
 import { ScheduleTable } from '@/components/dashboard/ScheduleTable';
@@ -24,9 +24,8 @@ export function Dashboard() {
       </header>
 
       <div className="space-y-4">
-        {/* 1 — Is the clinic on track? Answered before any scrolling.
-            Real @shopify/polaris, isolated in an iframe — see ClinicOverviewFrame. */}
-        <ClinicOverviewFrame />
+        {/* 1 — Is the clinic on track? Answered before any scrolling. */}
+        <ClinicOverviewCard />
 
         {/* 2 — Is anyone in danger? Highest-stakes question gets the highest position. */}
         <AttentionPanel items={attentionItems} counts={attentionCounts} />
