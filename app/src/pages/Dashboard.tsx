@@ -24,11 +24,11 @@ export function Dashboard() {
       </header>
 
       <div className="space-y-4">
-        {/* 1 — Is the clinic on track? Answered before any scrolling. */}
-        <ClinicOverviewCard />
-
-        {/* 2 — Is anyone in danger? Highest-stakes question gets the highest position. */}
+        {/* 1 — Is anyone in danger? Highest-stakes question gets the highest position. */}
         <AttentionPanel items={attentionItems} counts={attentionCounts} />
+
+        {/* 2 — Is the clinic on track overall? */}
+        <ClinicOverviewCard />
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <div className="space-y-4 lg:col-span-2">
