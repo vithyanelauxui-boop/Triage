@@ -1,4 +1,4 @@
-import { KpiStrip } from '@/components/dashboard/KpiStrip';
+import { ClinicOverviewFrame } from '@/components/dashboard/ClinicOverviewFrame';
 import { AttentionPanel } from '@/components/dashboard/AttentionPanel';
 import { NextPatientCard } from '@/components/dashboard/NextPatientCard';
 import { ScheduleTable } from '@/components/dashboard/ScheduleTable';
@@ -8,7 +8,7 @@ import {
   RecentActivityCard,
 } from '@/components/dashboard/SidePanels';
 import { PatientSheetProvider } from '@/components/dashboard/PatientSheet';
-import { attentionCounts, attentionItems, doctor, kpis, today } from '@/data/dashboard';
+import { attentionCounts, attentionItems, doctor, today } from '@/data/dashboard';
 
 export function Dashboard() {
   return (
@@ -24,8 +24,9 @@ export function Dashboard() {
       </header>
 
       <div className="space-y-4">
-        {/* 1 — Is the clinic on track? Answered before any scrolling. */}
-        <KpiStrip kpis={kpis} />
+        {/* 1 — Is the clinic on track? Answered before any scrolling.
+            Real @shopify/polaris, isolated in an iframe — see ClinicOverviewFrame. */}
+        <ClinicOverviewFrame />
 
         {/* 2 — Is anyone in danger? Highest-stakes question gets the highest position. */}
         <AttentionPanel items={attentionItems} counts={attentionCounts} />
